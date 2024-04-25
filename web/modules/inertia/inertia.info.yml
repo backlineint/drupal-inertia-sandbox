@@ -1,0 +1,5 @@
+name: 'inertia'
+type: module
+description: 'Create modern JavaScript apps using Drupal'
+package: Custom
+core_version_requirement: ^10 || ^11
