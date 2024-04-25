@@ -1,0 +1,7 @@
+inertia.example:
+  path: '/inertia/example'
+  defaults:
+    _title: 'Inertia Example'
+    _controller: '\Drupal\inertia\Controller\InertiaController'
+  requirements:
+    _permission: 'access content'
