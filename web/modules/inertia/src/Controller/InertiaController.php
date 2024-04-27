@@ -18,7 +18,7 @@ final class InertiaController extends ControllerBase {
 
     $build['content'] = [
       '#type' => 'item',
-      '#markup' => $this->t('It works!'),
+      '#markup' => '<div id="root"></div>',
       '#attached' => array(
         'library' => array(
             'inertia/app',

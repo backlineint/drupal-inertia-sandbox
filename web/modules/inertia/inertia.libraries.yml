@@ -2,6 +2,10 @@ app:
   vite:
     enabled: true
     manifest: app/dist/.vite/manifest.json
-  css:
-    component:
-      app/src/App.css: {}
+    baseUrl: "/modules/inertia/app/dist/"
+  js:
+    src/main.jsx: {}
+    # js/viteDevMode.js: {}
+  # css:
+  #   component:
+  #     src/index.css: {}
