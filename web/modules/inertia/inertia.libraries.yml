@@ -3,9 +3,12 @@ app:
     enabled: true
     manifest: app/dist/.vite/manifest.json
     baseUrl: "/modules/inertia/app/dist/"
+    devServerUrl: "https://drupal-inertia-sandbox.ddev.site:5173/modules/inertia/app/dist"
+    devDependencies:
+      - inertia/devmode
   js:
     src/main.jsx: {}
-    # js/viteDevMode.js: {}
-  # css:
-  #   component:
-  #     src/index.css: {}
+
+devmode:
+  js:
+    js/viteDevMode.js: {}
