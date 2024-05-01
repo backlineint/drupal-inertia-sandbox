@@ -19,6 +19,7 @@
         "drupal/core-composer-scaffold": "^10.2",
         "drupal/core-project-message": "^10.2",
         "drupal/core-recommended": "^10.2",
+        "drupal/devel": "^5.2",
         "drupal/vite": "^1.1",
         "drush/drush": "^12.5"
     },
