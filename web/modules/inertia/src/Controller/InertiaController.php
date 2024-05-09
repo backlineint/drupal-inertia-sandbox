@@ -29,16 +29,15 @@ final class InertiaController extends ControllerBase {
     $data_page = [
       'component' => 'example',
       'props' => [
-        'event' => [
+        'node' => [
           'id' => $node->id(),
           'title' => $node->getTitle(),
-          // Todo - test with HTML
           'description' => $node->get('body')->value,
         ],
-        // TODO - fix URL redirect
-        'url' => "/inertia/$path",
-        'version' => 'c32b8e4965f418ad16eaebba1d4e960f',
       ],
+      'url' => "/inertia/$path",
+      // TODO - actually handle asset versioning
+      'version' => 'c32b8e4965f418ad16eaebba1d4e960f',
     ];
 
     $build['content'] = [
