@@ -26,6 +26,7 @@ final class InertiaController extends ControllerBase {
       throw new NotFoundHttpException();
     }
 
+    // Typical calls for this should just be component, props
     return Inertia::render('example', [
       'node' => [
         'id' => $node->id(),
