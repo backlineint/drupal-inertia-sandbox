@@ -5,11 +5,8 @@ declare(strict_types=1);
 namespace Drupal\inertia;
 
 class Inertia {
-  // TODO - Maybe accept 'variables' array passed by reference here?
+  // Should this accept context / &$variables as well?
   static function render(string $component, array $props = [], string $url = '', string $version = '') {
-    // TODO - can we automatically determine the template based on suggestions?
-    // TODO - automatically determine the URL if not provided
-    // TODO - some magic for versioning
     $data_page = [
       'component' => $component,
       'props' => $props,
@@ -33,7 +30,24 @@ class Inertia {
     return $build;
   }
 
-  // Render by context method - does everything automatically based on pass by reference $variable being passed?
-  // static function renderByContext(&$variables) {
-  // Handles both nodes and SDCs.
+  // Should this accept overrides for component, props, etc.?
+  // Also accept options array?
+  static function renderByContext(&$variables) {
+    $props = [];
+    $prop_keys = array_keys($variables['content']);
+    foreach ($prop_keys as $key) {
+      // TODO - cases for SDCs, entities, etc.
+      if ($variables['node']->hasField($key)) {
+        $props['node'][$key] = $variables['node']->get($key)->value;
+      }
+    }
+
+    // TODO - think more about the best way to handle template suggestions
+    $variables['content'] = self::render(
+      $variables['theme_hook_original'] . '--' . $variables['view_mode'],
+      $props,
+      $variables['url'],
+      ''
+    )['content'];
+  }
 }

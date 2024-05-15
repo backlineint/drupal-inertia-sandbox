@@ -6,13 +6,15 @@ use Drupal\inertia\Inertia;
  * Implements hook_preprocess_node().
  */
 function inertia_preprocess_node(&$variables) {
-  $node = $variables['node'];
-  $path = $variables['url'];
-  $variables['content']['inertia'] = Inertia::render('example', [
-    'node' => [
-      'id' => $node->id(),
-      'title' => $node->getTitle(),
-      'description' => $node->get('body')->value,
-    ],
-  ], $path, 'c32b8e4965f418ad16eaebba1d4e960f');
+  // $node = $variables['node'];
+  // $path = $variables['url'];
+  // $variables['content']['inertia'] = Inertia::render('example', [
+  //   'node' => [
+  //     'id' => $node->id(),
+  //     'title' => $node->getTitle(),
+  //     'description' => $node->get('body')->value,
+  //   ],
+  // ], $path, 'c32b8e4965f418ad16eaebba1d4e960f');
+
+  Inertia::renderByContext($variables);
 }
