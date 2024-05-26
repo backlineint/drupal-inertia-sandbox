@@ -13,7 +13,7 @@ export default defineConfig({
       input: ["/src/main.jsx"],
     },
   },
-  base: "/modules/inertia/app/dist/",
+  base: "/modules/custom/inertia_examples/app/dist/",
   plugins: [react()],
   // Adjust Vites dev server for DDEV
   // https://vitejs.dev/config/server-options.html

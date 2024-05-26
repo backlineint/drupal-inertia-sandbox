@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\inertia\Controller;
+namespace Drupal\inertia_examples\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

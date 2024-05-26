@@ -1,0 +1,14 @@
+app:
+  vite:
+    enabled: true
+    manifest: app/dist/.vite/manifest.json
+    baseUrl: "/modules/custom/inertia_examples/app/dist/"
+    devServerUrl: "https://drupal-inertia-sandbox.ddev.site:5173/modules/custom/inertia_examples/app/dist"
+    devDependencies:
+      - inertia_examples/devmode
+  js:
+    src/main.jsx: {}
+
+devmode:
+  js:
+    js/viteDevMode.js: {}

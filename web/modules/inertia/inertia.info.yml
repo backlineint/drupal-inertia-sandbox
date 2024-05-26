@@ -1,7 +1,7 @@
 name: "Inertia"
 type: module
 description: "Create modern JavaScript apps using Drupal"
-package: Custom
+package: Inertia
 core_version_requirement: ^10 || ^11
 dependencies:
   - vite:vite

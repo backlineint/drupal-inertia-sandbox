@@ -1,0 +1,7 @@
+name: 'Inertia Examples'
+type: module
+description: 'Examples using the Inertia module'
+package: Inertia
+core_version_requirement: ^10 || ^11
+dependencies:
+  - inertia:inertia

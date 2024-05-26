@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * @file
+ * Primary module hooks for Inertia Examples module.
+ */
+
+
 use Drupal\inertia\Inertia;
 
 /**
  * Implements hook_preprocess_node().
  */
-function inertia_preprocess_node(&$variables) {
+function inertia_examples_preprocess_node(&$variables) {
   // $node = $variables['node'];
   // $path = $variables['url'];
   // $variables['content']['inertia'] = Inertia::render('example', [
