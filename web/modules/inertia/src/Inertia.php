@@ -20,13 +20,12 @@ class Inertia {
       '#type' => 'html_tag',
       '#tag' => 'div',
       '#attributes' => ['id' => 'app', 'data-page' => json_encode($data_page)],
-      '#attached' => array(
-        'library' => array(
-            // TODO - either allow this function to accept a library, or
-            // document how to override the default inertia app library
-            'inertia_examples/app',
-        ),
-      ),
+      // '#attached' => array(
+      //   'library' => array(
+      //       // TODO - allow this method to accept a library override
+      //       'inertia/app',
+      //   ),
+      // ),
     ];
 
     return $build;
@@ -34,7 +33,10 @@ class Inertia {
 
   // Should this accept overrides for component, props, etc.?
   // Also accept options array? Only option restricts fields displayed for example.
-  static function renderByContext(&$variables) {
+  // $example_options = [
+  //   'library' => [],
+  // ];
+  static function renderByContext(&$variables, $options = []) {
     $props = [];
     $prop_keys = array_keys($variables['content']);
     $view_mode = $variables['view_mode'];
