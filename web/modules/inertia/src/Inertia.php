@@ -6,7 +6,7 @@ namespace Drupal\inertia;
 
 class Inertia {
   // Should this accept context / &$variables as well?
-  static function render(string $component, array $props = [], string $url = '', string $version = '') {
+  static function render(string $component, array $props = [], string $url = '', string $version = '', array $slots = []) {
     $data_page = [
       'component' => $component,
       'props' => $props,
@@ -28,6 +28,16 @@ class Inertia {
       // ),
     ];
 
+    foreach ($slots as $slot_name => $slot_content) {
+      $build['content'][$slot_name] = [
+        '#type' => 'html_tag',
+        '#tag' => 'template',
+        // TODO - ID needs to be more specific
+        '#attributes' => ['name' => $slot_name],
+        '#value' => $slot_content,
+      ];
+    }
+
     return $build;
   }
 
@@ -38,6 +48,7 @@ class Inertia {
   // ];
   static function renderByContext(&$variables, $options = []) {
     $props = [];
+    $slots = [];
     $prop_keys = array_keys($variables['content']);
     $view_mode = $variables['view_mode'];
     $content_type = $variables['node']->getType();
@@ -47,19 +58,21 @@ class Inertia {
         $field = $variables['node']->get($key);
         $render_array = $field->view($view_mode);
         $rendered = \Drupal::service('renderer')->renderRoot($render_array);
-        $props['node'][$key] = $rendered;
+        $props['props'][$key] = 'slot:' . $key;
+        $slots[$key] = $rendered;
       }
     }
 
-    $children = $variables['content'];
+    // $children = $variables['content'];
     // TODO - think more about the best way to handle template suggestions
     $variables['content'] = self::render(
       $variables['theme_hook_original'] . '--' . $content_type . '--' . $variables['view_mode'],
       $props,
       $variables['url'],
-      ''
+      '',
+      $slots
     )['content'];
     // Kind of a poor man's SSR here...
-    $variables['content']['children'] = $children;
+    // $variables['content']['children'] = $children;
   }
 }
