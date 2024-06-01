@@ -17,8 +17,7 @@ class Inertia {
     // TODO - handle ID overrides
     // TODO - handle library overrides
     $build['content'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'div',
+      '#type' => 'container',
       '#attributes' => ['id' => 'app', 'data-page' => json_encode($data_page)],
       // '#attached' => array(
       //   'library' => array(
@@ -50,29 +49,24 @@ class Inertia {
     $props = [];
     $slots = [];
     $prop_keys = array_keys($variables['content']);
-    $view_mode = $variables['view_mode'];
-    $content_type = $variables['node']->getType();
     foreach ($prop_keys as $key) {
       // TODO - cases for SDCs, entities, etc.
       if ($variables['node']->hasField($key)) {
         $field = $variables['node']->get($key);
-        $render_array = $field->view($view_mode);
-        $rendered = \Drupal::service('renderer')->renderRoot($render_array);
+        $render_array = $field->view($variables['view_mode']);
+        $rendered = \Drupal::service('renderer')->render($render_array);
         $props['props'][$key] = 'slot:' . $key;
         $slots[$key] = $rendered;
       }
     }
 
-    // $children = $variables['content'];
     // TODO - think more about the best way to handle template suggestions
     $variables['content'] = self::render(
-      $variables['theme_hook_original'] . '--' . $content_type . '--' . $variables['view_mode'],
+      $variables['theme_hook_original'] . '--' . $variables['node']->getType() . '--' . $variables['view_mode'],
       $props,
       $variables['url'],
       '',
       $slots
     )['content'];
-    // Kind of a poor man's SSR here...
-    // $variables['content']['children'] = $children;
   }
 }
