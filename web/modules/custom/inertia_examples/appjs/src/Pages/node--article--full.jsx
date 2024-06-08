@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 export default function Example({ props, slots }) {
-  const { field_image, body, field_tags } = slots;
+  // const { field_image, body, field_tags } = slots;
   console.log("props", props);
   console.log("slots", slots);
   return (

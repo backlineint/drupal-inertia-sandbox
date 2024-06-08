@@ -25,6 +25,7 @@ export default function DrupalApp({
 }) {
   console.log("slots", slots);
   console.log("initialPage", initialPage);
+  console.log("initialComponent", initialComponent);
   const [current, setCurrent] = useState({
     component: initialComponent || null,
     page: initialPage,

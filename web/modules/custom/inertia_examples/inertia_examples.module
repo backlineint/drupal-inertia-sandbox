@@ -24,4 +24,5 @@ function inertia_examples_preprocess_node(&$variables) {
 
   Inertia::renderByContext($variables);
   $variables['#attached']['library'][] =  'inertia_examples/app';
+  // $variables['#attached']['library'][] =  'inertia_examples/appjs';
 }
