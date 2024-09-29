@@ -1,5 +1,5 @@
 inertia.example:
-  path: "/inertia/{path}"
+  path: "/inertia/example"
   defaults:
     _title: "Inertia Example"
     _controller: '\Drupal\inertia_examples\Controller\InertiaController'
