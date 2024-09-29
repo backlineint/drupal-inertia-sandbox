@@ -1,6 +1,0 @@
-services:
-  inertia.twig_extension:
-    class: Drupal\inertia\InertiaTwigExtension
-    arguments: ['@entity_type.manager']
-    tags:
-      - { name: twig.extension }
