@@ -4,11 +4,12 @@ Initial POCs for a Drupal implementation of [Inertia.js](https://inertiajs.com/)
 
 ## Setup
 
-TODO - Revise this section
+Install [ddev](https://ddev.readthedocs.io/en/stable/) and run the following:
 
-ddev start
-ddev composer install
-ddev drush site:install -y
+`ddev install`
+
+In the resulting Drupal instance, all nodes and the route /inertia/example will
+be rendered using Inertia.
 
 ## Modules
 

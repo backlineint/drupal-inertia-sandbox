@@ -1,0 +1,25 @@
+#!/bin/bash
+
+ddev start
+ddev composer install
+ddev drush site:install -y
+
+# Install a small amount of dependencies
+ddev drush en inertia_examples devel_generate -y
+
+# Generate some content
+ddev drush devel-generate:content
+
+# Build production version of Inertia app
+ddev npm install --prefix web/modules/custom/inertia_examples/app
+ddev npm run build --prefix web/modules/custom/inertia_examples/app
+
+# You know, caches
+ddev drush cr
+
+# Open Drupal in browser
+ddev drush uli | xargs open
+
+# Also outline dev mode
+# Upgrade Drupal
+
