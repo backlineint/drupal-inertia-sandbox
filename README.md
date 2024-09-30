@@ -8,7 +8,7 @@ Install [ddev](https://ddev.readthedocs.io/en/stable/) and run the following:
 
 `ddev install`
 
-In the resulting Drupal instance, all nodes and the route /inertia/example will
+In the resulting Drupal instance, all node routes and /inertia/example will
 be rendered using Inertia.
 
 ## Modules
@@ -38,6 +38,18 @@ renderByContent will use the appropriate template in app/src/Pages based on the
 node template suggestion. All fields will be converted to slots which will be
 rendered by React.
 
-### How Inertia Examples uses Vite
+#### File structure
 
 TODO
+
+### Vite
+
+inertia_examples uses the Drupal Vite module to enable HMR when running in dev
+mode. To start Vite in dev mode run:
+
+`ddev vite`
+
+Any updates to tsx templates in modules/custom/inertia_examples/app/src/Pages
+will be reflected in the browser automatically.
+
+When switching between prod and dev mode, be sure to clear Drupal's cache.

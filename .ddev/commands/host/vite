@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Ensure cache is cleared if transitioning from prod to dev
+ddev drush cr
+
+# Start vite in dev mode
+ddev npm run dev --prefix web/modules/custom/inertia_examples/app
+

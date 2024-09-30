@@ -20,6 +20,3 @@ ddev drush cr
 # Open Drupal in browser
 ddev drush uli | xargs open
 
-# Also outline dev mode
-# Upgrade Drupal
-
