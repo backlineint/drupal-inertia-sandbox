@@ -43,6 +43,12 @@ support Inertia's client-side navigation for subsequent page loads.
 
 Provides examples of the two existing methods provided by the Inertia module.
 
+In the browser, try inspecting the #app element. You'll see the data-page
+attribute, which contains the serialized json used when mounting the Inertia app.
+
+When viewing a node - with js disabled, you'll see template elements for each
+field. With js enabled, you'll see the React components that replace those.
+
 #### Inertia::render
 
 The module provides a custom route at `/inertia/example` that uses the
