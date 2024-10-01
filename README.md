@@ -2,20 +2,42 @@
 
 Initial POCs for a Drupal implementation of [Inertia.js](https://inertiajs.com/)
 
+While hopefully these implementation concepts are useful, be sure to check out
+the docs for the Inertia project itself, which is debatably the more interesting
+part of all this.
+
 ## Setup
 
 Install [ddev](https://ddev.readthedocs.io/en/stable/) and run the following:
 
 `ddev install`
 
-In the resulting Drupal instance, all node routes and /inertia/example will
-be rendered using Inertia.
+In the resulting Drupal instance, all nodes in the default display mode and the
+route /inertia/example will be rendered using Inertia.
+
+For the curious, `ddev install` runs the bash script at `.ddev/commands/host/install`
 
 ## Modules
 
 ### Inertia
 
-TODO - Things to look at in inertia...
+A pre-release version of the Drupal module is published on Drupal.org at
+https://www.drupal.org/project/inertia
+
+The inertia module primarily adds an implementation of Inertia's ::render()
+method. This render method also introduces the concept of slots, which will map
+nicely to Single Directory Components, but is not currently part of the main
+Inertia implementation.
+
+Additionally, the module provides a ::renderByContext() method that given the
+$variables array for a particular template, will render all fields as slots.
+This honors things like display mode controls in Drupal - re-order fields and
+see the result in Inertia/React.
+
+Equivalents will also be offered as Twig extensions, but are not yet implemented.
+
+The current implementation only handles the initial page load and does not yet
+support Inertia's client-side navigation for subsequent page loads.
 
 ### Inertia Examples
 
@@ -40,7 +62,20 @@ rendered by React.
 
 #### File structure
 
-TODO
+This module still does some heavy-ish lifting that we'd we'd probably want ironed
+out in a more production-ready implementation.
+
+- The root directory contains standard Drupal module files.
+- /src contains the controller for the /inertia/example route.
+- /js - a helper script for HMR with Vite and React.
+- /app contains the Inertia app.
+  - /app/src/main.tsx calls @inertiajs/react's createInertiaApp method. This
+    renders the app and also handles resolving the requested React template. It
+    also parses slots from Drupal using html-react-parser, which is unique to this
+    implementation.
+  - /app/src/App.tsx is a port of Inertia's App component, primarily to handle
+    the slot rendering.
+  - /app/src/Pages contains the React components for each Drupal template.
 
 ### Vite
 
@@ -53,3 +88,6 @@ Any updates to tsx templates in modules/custom/inertia_examples/app/src/Pages
 will be reflected in the browser automatically.
 
 When switching between prod and dev mode, be sure to clear Drupal's cache.
+
+You'll also see Vite related configuration in the module's libraries.yml file,
+and the app's vite.config.js file.
